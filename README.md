@@ -1,3 +1,3 @@
 # Jersey-HelloJersey
 
-mvn grizzly:start
+mvn exec:java
