@@ -4,6 +4,9 @@
 /com
 /hibernate.cfg.xml
 /org
+.classpath
+target
+.project
 
 .swp
 
