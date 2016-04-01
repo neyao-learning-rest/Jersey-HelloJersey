@@ -7,7 +7,7 @@
 .classpath
 target
 .project
-
+bin/
 .swp
 
 .DS_Store
