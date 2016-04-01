@@ -31,8 +31,8 @@ public class MyResource {
     @GET
     @Path("/{name}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String sayHello(@PathParam("name") String name) {
-		return "Hello" + name;
+    public Hello sayHello(@PathParam("name") String name) {
+		return new Hello(1000, name);
     	
     }
     

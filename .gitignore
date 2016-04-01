@@ -9,7 +9,7 @@ target
 .project
 bin/
 .swp
-
+.settings/
 .DS_Store
 .AppleDouble
 .LSOverride
