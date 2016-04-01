@@ -3,8 +3,12 @@ package org.oursight.jersey.hello;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
@@ -60,5 +64,20 @@ public class MyResourceTest {
         Hello hello = target.path("myresource/a-example-userName").request(MediaType.APPLICATION_JSON).get(Hello.class);
         System.out.println(hello);
         assertNotNull(hello);
+    }
+    
+    @Test
+    public void testHelloBatch() {
+    	List<Hello> list = new ArrayList<Hello>();
+    	list.add(new Hello(1, "foo"));
+    	list.add(new Hello(2, "bar"));
+    	list.add(new Hello(3, "goo"));
+    	
+    	Client c = ClientBuilder.newClient().register(new JacksonFeature());
+    	target = c.target(Main.BASE_URI);
+//        List<Hello> result = target.path("myresource/hello_batch").request(MediaType.APPLICATION_JSON).post(Entity.entity(list, MediaType.APPLICATION_JSON));
+        List result = target.path("myresource/hello_batch").request(MediaType.APPLICATION_JSON).post(Entity.entity(list, MediaType.APPLICATION_JSON), List.class);
+        System.out.println(result);
+        assertNotNull(result);
     }
 }

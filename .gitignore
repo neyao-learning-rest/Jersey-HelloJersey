@@ -1,4 +1,4 @@
-*/target/**
+target/
 /AnalysisKnowledge.xml
 /User.hbm.xml
 /com

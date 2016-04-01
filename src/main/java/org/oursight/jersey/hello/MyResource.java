@@ -1,5 +1,7 @@
 package org.oursight.jersey.hello;
 
+import java.util.List;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -43,6 +45,20 @@ public class MyResource {
 		return hello;
     	
     }
+    
+    /**
+     * show how to receive a json array and convert into List
+     * @param hello
+     * @return
+     */
+    @POST
+    @Path("/hello_batch")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Hello> batchSayHello(List<Hello> hellos) {
+		return hellos;
+    	
+    }
+    
     
     
 }
