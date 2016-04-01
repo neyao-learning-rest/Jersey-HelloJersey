@@ -26,7 +26,7 @@ public class MyResourceTest {
     	
         // create the client
 //        Client c = ClientBuilder.newClient();
-        Client c = ClientBuilder.newClient().register(new JacksonFeature());
+//        Client c = ClientBuilder.newClient().register(new JacksonFeature());
 
         // uncomment the following line if you want to enable
         // support for JSON in the client (you also have to uncomment
@@ -34,7 +34,7 @@ public class MyResourceTest {
         // --
         // c.configuration().enable(new org.glassfish.jersey.media.json.JsonJaxbFeature());
 
-        target = c.target(Main.BASE_URI);
+        
     }
 
     @After
@@ -47,12 +47,16 @@ public class MyResourceTest {
      */
     @Test
     public void testGetIt() {
+    	Client c = ClientBuilder.newClient();
+    	target = c.target(Main.BASE_URI);
         String responseMsg = target.path("myresource").request().get(String.class);
         assertEquals("Got it!", responseMsg);
     }
     
     @Test
     public void testHello() {
+    	Client c = ClientBuilder.newClient().register(new JacksonFeature());
+    	target = c.target(Main.BASE_URI);
         Hello hello = target.path("myresource/a-example-userName").request(MediaType.APPLICATION_JSON).get(Hello.class);
         System.out.println(hello);
         assertNotNull(hello);
